@@ -29,7 +29,7 @@ class SigFromPyTests(unittest.TestCase):
         self.assertEquals( m.sigFromPy(p), s )
 
     def test_int(self):
-        self.t(1,'i')
+        self.t(1,'u')
 
     def test_bool(self):
         self.t(True,'b')
@@ -45,25 +45,25 @@ class SigFromPyTests(unittest.TestCase):
         self.t('foo','s')
 
     def test_list(self):
-        self.t([1],'ai')
+        self.t([1],'au')
 
     def test_bytearray(self):
         self.t(bytearray(six.b('\xAA\xAA')), 'ay')
 
     def test_list_multiple_elements_same_type(self):
-        self.t([1,2],'ai')
+        self.t([1,2],'au')
 
     def test_list_of_variants(self):
         self.t([1,'2'],'av')
 
     def test_tuple(self):
-        self.t(('foo',1),'(si)')
+        self.t(('foo',1),'(su)')
 
     def test_dict(self):
-        self.t(dict(foo=1),'a{si}')
+        self.t(dict(foo=1),'a{su}')
 
     def test_dict_multiple_elements_same_type(self):
-        self.t(dict(foo=1,bar=2),'a{si}')
+        self.t(dict(foo=1,bar=2),'a{su}')
 
     def test_dict_of_variants(self):
         self.t(dict(foo=1,bar='2'),'a{sv}')
@@ -255,7 +255,7 @@ class TestArrayMarshal(TestMarshal):
 class TestVariantMarshal(TestMarshal):
 
     def test_byte(self):
-        self.check('v', [1], pack('B2si', 1, b'i', 1))
+        self.check('v', [1], pack('B2si', 1, b'u', 1))
 
     def test_struct(self):
         class S:
